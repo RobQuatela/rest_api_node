@@ -3,6 +3,7 @@ const burgersService = require('../services/burgers-services');
 const listAllBurgers = (req, res) => {
     burgersService.listAll().then((docs) => {
         res.send({
+            count: docs.length,
             result: docs
         });
     }, (err) => {
@@ -21,7 +22,7 @@ const findBurgerById = (req, res) => {
 };
 
 const saveBurger = (req, res) => {
-    burgersService.save(req).then((doc) => {
+    burgersService.save(req.body).then((doc) => {
         res.send({
             result: doc
         });
@@ -31,7 +32,7 @@ const saveBurger = (req, res) => {
 };
 
 const updateBurger = (req, res) => {
-    burgersService.update(req).then((doc) => {
+    burgersService.update(req.body).then((doc) => {
         res.send({
             result: doc
         });
@@ -42,7 +43,7 @@ const updateBurger = (req, res) => {
 
 const removeBurger = (req, res) => {
     burgersService.remove(req.params.id).then((doc) => {
-        res.send({deleted: true, burger: doc});
+        res.send({deleted: true, result: doc});
     }, (err) => {
         res.status(400).send(err);
     });

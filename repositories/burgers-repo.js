@@ -20,6 +20,7 @@ const save = (burger) => {
 };
 
 const update = (burger) => {
+    burger._id = new ObjectId(burger._id);
     return Burger.updateOne(burger);
 };
 

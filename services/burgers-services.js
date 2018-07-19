@@ -17,7 +17,7 @@ const update = (burger) => {
 };
 
 const remove = (id) => {
-    return remove(id);
+    return burgersRepo.remove(id);
 }
 
 module.exports = {
